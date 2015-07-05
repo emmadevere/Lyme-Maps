@@ -1,3 +1,6 @@
+library(maps)
+library("wesanderson")
+
 setwd("~/GitHub/Lyme-Maps")
 my.dat <- read.csv("lymestates.csv", header = TRUE, sep = ";")
 
@@ -12,6 +15,16 @@ my.dat$mean <- apply(my.dat, 1, mean)
 my.dat$change <- (my.dat$X2013.Confirmed - my.dat$X2004)
 
 #MAPPING THE DIFFERENCE
+#THE BREAKPOINTS BETWEEN COLORS
+my.dat$colorfill <- as.factor(as.numeric(cut(my.dat$change, 
+    c(-1000, 0, 1000))))
+#REPRESENTATIONAL COLORS
+colors = wes_palette("Zissou, 3)
+#MAPPING
+map("usa", col = colors[my.dat$colorfill],
+  fill = TRUE, resolution = 0, lty = 1,
+  lwd= 0.2, bg = "gray")
+
 
 #DIFFERENCE OF THE MEANS OF THE FIRST TWO YEARS AND LAST TWO YEARS
 my.dat$mean0405 <- apply(my.dat, 1, mean)
