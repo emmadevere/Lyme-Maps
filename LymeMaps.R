@@ -18,9 +18,11 @@ my.dat$change <- (my.dat$X2013.Confirmed - my.dat$X2004)
 #MAPPING THE DIFFERENCE
 #THE BREAKPOINTS BETWEEN COLORS
 my.dat$colorfill <- as.factor(as.numeric(cut(my.dat$change, 
-    c(-10000, -500, 0, 500, 10000))))
+    c(-2000, -1500, -1000, -500, 0, 500, 1000, 1500,
+      2000, 2500))))
 #REPRESENTATIONAL COLORS
-palette = (wes_palette("GrandBudapest", 4))
+palette = c("#d53e4f", "#f46d43",  "#fdae61", "#fee08b", 
+           "#d53e4f", "#f46d43", "#fdae61", "#fee08b")
 #MATCHING STATE TO MAP DATA
 mapnames <- map("state" ,plot=FALSE)[4]$names
 colorsmatched <- my.dat$colorfill [na.omit(match(mapnames,
