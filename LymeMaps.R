@@ -1,5 +1,4 @@
 library(maps)
-library("wesanderson")
 
 setwd("~/GitHub/Lyme-Maps")
 my.dat <- read.csv("lymestates.csv", header = TRUE, sep = ";")
@@ -74,9 +73,14 @@ my.dat$change3 <- (my.dat$mean1113 - my.dat$mean0406)
 
 #MAPPING
 my.dat$colorfill3 <- as.factor(as.numeric(cut(my.dat$change3, 
-    c(-10000, -500, 0, 500, 10000))))
+    c(-2600, -1500, -1000, -500, 0, 500, 1000, 1500,
+      2000, 2500))))
+my.dat$colorfill3 <- as.factor(my.dat$colorfill3)
 colorsmatched <- my.dat$colorfill3 [na.omit(match(mapnames,
     my.dat$State))]
+palette = c("#4575b4", "#e0f3f8", 
+    "#ffffbf", "#fee090", "#fdae61")
 map("state", col = palette[my.dat$colorfill3], fill = TRUE, 
     resolution = 0, lty = 1, lwd= 0.2, bg = "gray")
 title(main="Change in Lyme Disease Incidence (2004-2013)",cex.main=1.2)
+
