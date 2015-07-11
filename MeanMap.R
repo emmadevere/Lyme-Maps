@@ -13,8 +13,8 @@ my.dat$mean <- apply(my.dat, 1, mean)
 
 #MAP
 #THE BREAKPOINTS BETWEEN COLORS
-my.dat$colorfill <- as.numeric(cut(my.dat$mean, 
-    c(0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500)))
+my.dat$colorfill <- as.factor(as.numeric(cut(my.dat$mean, 
+    c(0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500))))
 #colorfill needs to be a factor for matching data to maps but
 #if done in the above, takes absolute values of my.dat$change
 my.dat$colorfill <- as.factor(my.dat$colorfill)
@@ -32,3 +32,7 @@ colorsmatched <- my.dat$colorfill [na.omit(match(mapnames,
 map("state", col = palette[my.dat$colorfill], fill = TRUE, 
     resolution = 0, lty = 1, lwd= 0.2, bg = "gray")
 title(main="Change in Lyme Disease Incidence (2004-2013)",cex.main=1.2)
+
+#LEGEND
+leg.txt <- c("<2%", "2-4%", "4-6%", "6-8%", "8-10%", ">10%")
+legend("right", leg.txt, horiz = FALSE, fill = palette, cex=.6)
