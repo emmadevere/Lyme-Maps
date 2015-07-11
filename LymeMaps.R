@@ -18,8 +18,8 @@ my.dat$colorfill <- as.factor(my.dat$colorfill)
 
 #REPRESENTATIONAL COLORS
 
-###palette = c("#4575b4", "#74add1",  "#abd9e9", "#e0f3f8", 
-###"#ffffbf", "#fee090", "#fdae61", "#f46d43", "#d73027")
+fullpalette = c("#4575b4", "#74add1",  "#abd9e9", "#e0f3f8", 
+"#ffffbf", "#fee090", "#fdae61", "#f46d43", "#d73027")
 #ABOVE ARE COLORS FOR EACH LEVEL, BELOW IS WHAT 
 #COLORS/LEVELS EXIST FOR THIS SPECIFIC MAP
 
@@ -33,7 +33,14 @@ colorsmatched <- my.dat$colorfill [na.omit(match(mapnames,
 #MAPPING
 map("state", col = palette[my.dat$colorfill], fill = TRUE, 
     resolution = 0, lty = 1, lwd= 0.2, bg = "gray")
-title(main="Change in Lyme Disease Incidence (2004-2013)",cex.main=1.2)
+title(main="Change in Lyme Disease Incidence (2004-2013) #1",cex.main=1.2)
+
+#LEGEND
+leg.txt <- c("<-1500", "-1000 to -1499", "-500 to -999", "0 to -499", 
+             "1 to 500", "501 to 1000", "1000 to 1500", "1501 to 2000",
+             ">2000")
+legend("right", leg.txt, horiz = FALSE, fill = fullpalette, cex=.6)
+
 
 #DIFFERENCE OF THE MEANS OF THE FIRST TWO YEARS AND LAST TWO YEARS
 my.dat$mean0405 <- apply(subset(my.dat, 
