@@ -34,5 +34,7 @@ map("state", col = palette[my.dat$colorfill], fill = TRUE,
 title(main="Change in Lyme Disease Incidence (2004-2013)",cex.main=1.2)
 
 #LEGEND
-leg.txt <- c("<2%", "2-4%", "4-6%", "6-8%", "8-10%", ">10%")
+leg.txt <- c("0-499", "500-999", "1000-1499", "1500-1999", 
+             "2000-2499", "2500-2999", "3000-3499",
+             "3500-3999", "4000+")
 legend("right", leg.txt, horiz = FALSE, fill = palette, cex=.6)
