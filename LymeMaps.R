@@ -31,6 +31,8 @@ colorsmatched <- my.dat$colorfill [na.omit(match(mapnames,
     my.dat$State))]
 
 #MAPPING
+par(mar = c(9, 7, 4, 5))
+
 map("state", col = palette[my.dat$colorfill], fill = TRUE, 
     resolution = 0, lty = 1, lwd= 0.2, bg = "gray")
 title(main="Change in Lyme Disease Incidence (2004-2013) #1",cex.main=1.2)
@@ -39,7 +41,7 @@ title(main="Change in Lyme Disease Incidence (2004-2013) #1",cex.main=1.2)
 leg.txt <- c("<-1500", "-1000 to -1499", "-500 to -999", "0 to -499", 
              "1 to 500", "501 to 1000", "1000 to 1500", "1501 to 2000",
              ">2000")
-legend("right", leg.txt, horiz = FALSE, fill = fullpalette, cex=.6)
+legend("bottom", leg.txt, horiz = TRUE, fill = fullpalette, cex=.6)
 
 
 #DIFFERENCE OF THE MEANS OF THE FIRST TWO YEARS AND LAST TWO YEARS
